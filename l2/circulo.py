@@ -14,7 +14,7 @@ class Circulo:
         else: raise ValueError("O valor deve ser positivo")
         
     
-    def calc_area(self):
+    def calc_area(self) -> float:
         area = math.pi * self.__raio ** 2
         return area  
     def calc_circunferencia(self):
