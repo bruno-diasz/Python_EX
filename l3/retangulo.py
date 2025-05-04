@@ -1,5 +1,5 @@
-import math
-class Retangulo():
+from math import sqrt
+class Retangulo:
     def __init__(self, b:int, h:int):
         self.b = b
         self.h = h
@@ -30,7 +30,7 @@ class Retangulo():
         return self.b*self.h
     
     def CalcDiagonal(self):
-        return math.sqrt(self.b**2+self.h**2)
+        return sqrt(self.b**2+self.h**2)
     
     def __str__(self):
         return f"Base = {self.b}\nAltura = {self.h}\nArea = {self.CalcArea()}\nDiagonal = {self.CalcDiagonal()}"
