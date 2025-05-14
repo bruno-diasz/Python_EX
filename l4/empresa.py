@@ -6,7 +6,6 @@ class Empresa:
         self.__clientes = []
 
         self.nome = nome
-        self.clientes = []
     
     #=== Getters e Setters ===
     @property
@@ -18,6 +17,12 @@ class Empresa:
         if nome == "": raise ValueError("O Nome nao pode ser vazio")
         self.__nome = nome
 
+    @property
+    def clientes(self):
+        return self.__clientes
+    
+    
+
     #=== Metodos de Instância ===
     def inserir(self, cliente:object):
         self.clientes.append(cliente)
@@ -28,15 +33,15 @@ class Empresa:
 class Cliente:
     #=== Metodos construtor ===
     def __init__(self,nome:str, cpf:str, limite:float):
-        self.__nome = None
-        self.__cpf = None
-        self.__limite = 0.0
-        self.__socio = None
+        self.__nome = None      #Inicializando atributos
+        self.__cpf = None       #Inicializando atributos
+        self.__limite = 0.0     #Inicializando atributos
+        self.__socio = None     #Inicializando atributos
 
-        self.nome = nome       # chama o setter
-        self.cpf = cpf         # chama o setter
-        self.limite = limite   # chama o setter
-        self.socio = None      # chama o setter
+        self.nome = nome        # chama o setter
+        self.cpf = cpf          # chama o setter
+        self.limite = limite    # chama o setter
+       
     
     #=== Getters e Setters ===
     @property
@@ -58,7 +63,7 @@ class Cliente:
     
     @property
     def limite(self):
-        return self.__limite+self.__socio.limite
+        return self.__limite
     
     @limite.setter
     def limite(self, limite:float):
@@ -74,11 +79,19 @@ class Cliente:
         if self.__socio != None:
             self.__socio.__socio = None
         self.__socio = cliente
+        if cliente.__socio != None:
+            cliente.__socio.__socio = None
         cliente.__socio = self
 
     #=== Metodo ToStrig === 
     def __str__(self):
-        return f"\nNome: {self.nome}\nCPF: {self.cpf}\nLimite: {self.limite}\nSocio: {self.socio.nome}\n"
+        imprimir = ""
+        if self.socio == None:
+            imprimir = f"\nNome: {self.nome}\nCPF: {self.cpf}\nLimite: {self.limite}\n"
+        else:
+            imprimir = f"\nNome: {self.nome}\nCPF: {self.cpf}\nLimite: {self.limite}\nSocio: {self.socio.nome}\n"
+
+        return imprimir
     
 class UI:
     @staticmethod
