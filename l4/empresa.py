@@ -1,6 +1,6 @@
 class Empresa:
 
-    #===Metodo construtor ===
+    #=== Metodo construtor ===
     def __init__(self, nome:str):
         self.__nome = None
         self.__clientes = []
@@ -83,7 +83,7 @@ class Cliente:
             cliente.__socio.__socio = None
         cliente.__socio = self
 
-    #=== Metodo ToStrig === 
+    #=== Metodo ToStrig ===
     def __str__(self):
         imprimir = ""
         if self.socio == None:
