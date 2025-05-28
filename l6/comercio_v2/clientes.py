@@ -6,28 +6,42 @@ class Clientes:
 
     @classmethod
     def inserir(cls, obj:object):
+        cls.abrir()
+        i = 0
+        for elemento in cls.objetos:
+            if elemento.id > i:
+                i = elemento.id
+        obj.id = i + 1
         cls.objetos.append(obj)
+        cls.salvar()
 
     @classmethod
-    def listar(cls):
-        for obj in cls.objetos:
-            print(obj)
+    def listar(cls) -> list[Cliente]:
+        cls.abrir()
+        return cls.objetos
 
     @classmethod
     def listar_id(cls, id:int):
+        cls.abrir()
         for obj in cls.objetos:
             if obj.id == id:
-                print(obj)
+                return obj
+        return None
 
     @classmethod
     def atualizar(cls, obj):
-        obj.nome = input("Digite o novo nome: ")
-        obj.email = input("Digite o novo email: ")
-        obj.fone = input("Digite o novo telefone: ")
+        x = cls.listar_id(obj.id)
+        if x is not None: 
+            cls.objetos.remove(x)
+            cls.objetos.append(obj)
+            cls.salvar()
 
     @classmethod
     def excluir(cls, obj):
-        cls.objetos.remove(obj)
+        x = cls.listar_id(obj.id)
+        if x is not None: 
+            cls.objetos.remove(x)
+            cls.salvar()
 
     @classmethod
     def salvar(cls):
@@ -47,15 +61,22 @@ class Clientes:
                 cls.objetos.append(c)
 
 
-
+# Clientes.salvar()
 # x = Cliente(0,"Bruno","teste@email.com","123")
-# y = Cliente(1,"Jorge","teste2@email.com","321")
+# y = Cliente(0,"Jorge","teste2@email.com","321")
 # Clientes.inserir(x)
 # Clientes.inserir(y)
-# Clientes.salvar()
+# x = Cliente(0,"Bruno","teste@email.com","123")
+# y = Cliente(0,"Jorge","teste2@email.com","321")
+# Clientes.inserir(x)
+# Clientes.inserir(y)
+# x = Cliente(0,"Bruno","teste@email.com","123")
+# y = Cliente(0,"Jorge","teste2@email.com","321")
+# Clientes.inserir(x)
+# Clientes.inserir(y)
 
-Clientes.abrir()
-Clientes.abrir()
-Clientes.listar()
 
+# for i in Clientes.objetos:
+#     print (i)
+# print(Clientes.listar())
 
