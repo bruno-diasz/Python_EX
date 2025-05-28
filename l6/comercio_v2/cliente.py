@@ -1,7 +1,7 @@
 class Cliente:
     def __init__(self, id:int, nome:str, email:str, fone:str):
         self.id = id #Chamando setter
-        self.nome - nome #Chamando setter
+        self.nome = nome #Chamando setter
         self.email= email #Chamando setter
         self.fone = fone #Chamando setter
 
@@ -48,3 +48,6 @@ class Cliente:
     #Metodos da instancia
     def __str__(self):
         return f"{self.id}. {self.nome} - {self.email} - {self.fone}"
+    
+    def to_dict(self):
+        return {"id":self.id, "nome":self.nome, "email":self.email, "fone":self.fone}
