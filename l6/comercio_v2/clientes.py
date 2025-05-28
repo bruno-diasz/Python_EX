@@ -63,23 +63,3 @@ class Clientes:
         except:
             return
 
-
-# Clientes.salvar()
-# x = Cliente(0,"Bruno","teste@email.com","123")
-# y = Cliente(0,"Jorge","teste2@email.com","321")
-# Clientes.inserir(x)
-# Clientes.inserir(y)
-# x = Cliente(0,"Bruno","teste@email.com","123")
-# y = Cliente(0,"Jorge","teste2@email.com","321")
-# Clientes.inserir(x)
-# Clientes.inserir(y)
-# x = Cliente(0,"Bruno","teste@email.com","123")
-# y = Cliente(0,"Jorge","teste2@email.com","321")
-# Clientes.inserir(x)
-# Clientes.inserir(y)
-
-
-# for i in Clientes.objetos:
-#     print (i)
-# print(Clientes.listar())
-
