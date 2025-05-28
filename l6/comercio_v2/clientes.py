@@ -53,12 +53,15 @@ class Clientes:
 
     @classmethod
     def abrir(cls):
-        cls.objetos = []    
-        with open("l6/comercio_v2/clientes.json", mode="r") as arquivo:
-            clientes_json = json.load(arquivo)
-            for obj in clientes_json:
-                c = Cliente(obj["id"], obj["nome"], obj["email"],obj["fone"] )
-                cls.objetos.append(c)
+        try:
+            cls.objetos = []    
+            with open("l6/comercio_v2/clientes.json", mode="r") as arquivo:
+                clientes_json = json.load(arquivo)
+                for obj in clientes_json:
+                    c = Cliente(obj["id"], obj["nome"], obj["email"],obj["fone"] )
+                    cls.objetos.append(c)
+        except:
+            return
 
 
 # Clientes.salvar()
