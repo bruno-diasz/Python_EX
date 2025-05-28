@@ -49,7 +49,7 @@ class Clientes:
         for obj in cls.objetos:
             lista_clientes.append(obj.to_dict())
         with open("l6/comercio_v2/clientes.json", mode="w") as arquivo:
-            json.dump( lista_clientes , arquivo, indent=4)
+            json.dump(lista_clientes , arquivo, indent=4)
 
     @classmethod
     def abrir(cls):
