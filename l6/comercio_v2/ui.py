@@ -1,4 +1,5 @@
 from clientes import Clientes, Cliente
+from vendas import Vendas, Venda
 
 class UI:
     @staticmethod
@@ -34,13 +35,13 @@ class UI:
             elif op == 13: UI.cliente_atualizar()
             elif op == 14: UI.cliente_excluir()
             elif op == 21: UI.venda_iniciar()
-            elif op == 22: UI.venda_()
-            elif op == 23: UI.venda_iniciar()
-            elif op == 24: UI.venda_iniciar()
+            elif op == 22: UI.venda_inserir_produto()
+            elif op == 23: UI.venda_confirmar()
+            elif op == 24: UI.venda_listar()
             elif op == 3 : break
             else: print("Digite uma opção válida")
 
-    
+    #Cliente
     @staticmethod
     def cliente_listar():
         print()
@@ -74,6 +75,16 @@ class UI:
         x = Clientes.listar_id(id)
         Clientes.excluir(x)
 
+    #Venda
+    def venda_iniciar():
+        x =  Venda(0)
+        Vendas.inserir(x)
+
+    def venda_inserir_produto():
+        pass
+
+    def venda_confirmar():
+        pass
 UI.main()
 
 

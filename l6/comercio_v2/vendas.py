@@ -6,7 +6,14 @@ class Vendas:
     
     @classmethod
     def inserir(cls,obj:Venda):
+        cls.abrir()
+        i = 0
+        for elemento in cls.objetos:
+            if elemento.id > i:
+                i = elemento.id
+        obj.id = i + 1
         cls.objetos.append(obj)
+        cls.salvar()
 
     @classmethod
     def listar(cls) -> list[Venda]:
