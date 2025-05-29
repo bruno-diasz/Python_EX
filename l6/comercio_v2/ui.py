@@ -55,6 +55,20 @@ class UI:
         x = Cliente(0,nome,email,fone)
         Clientes.inserir(x)
 
+    @staticmethod
+    def cliente_atualizar():
+        id = int(input("Digite o ID o cliente que deseja atualizar: "))
+        nome = input("Informe o novo nome: ")
+        email = input("Informe o novo e-mail: ")
+        fone = input("Informe o novo fone: ")        
+        x = Cliente(id, nome, email, fone)
+        Clientes.atualizar(x)
+
+    @staticmethod
+    def cliente_excluir():
+        id = int(input("Digite o ID o cliente que deseja excluir: "))
+        x = Clientes.listar_id(id)
+        Clientes.excluir(x)
 
 UI.main()
 
