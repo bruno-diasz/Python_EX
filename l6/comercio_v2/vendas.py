@@ -22,29 +22,32 @@ class Vendas:
     @classmethod
     def atualizar(cls, obj:Venda):
         old_obj = cls.listar_id(obj.id)
-        if x is not None: 
-            cls.objetos.remove(x)
+        if old_obj is not None: 
+            cls.objetos.remove(old_obj)
             cls.objetos.append(obj)
             cls.salvar()
 
     @classmethod
     def excluir(cls, obj:Venda):
-        if x is not None:
+        if obj is not None:
             cls.objetos.remove(obj)
             cls.salvar()
 
     @classmethod
     def abrir(cls):
-        with open("vendas.json", mode="r") as arquivo:
-            vendas_json = json.load(arquivo)
-            for obj in vendas_json:
-                x = Venda(obj["id"])
-                x.data, x.carrinho= obj["data"], obj["carrinho"]
-                x.total,x.idCliente= obj["total"], obj["idCliente"]
-                cls.objetos.append(x)
+        try:
+            with open("vendas.json", mode="r") as arquivo:
+                vendas_json = json.load(arquivo)
+                for obj in vendas_json:
+                    x = Venda(obj["id"])
+                    x.data, x.carrinho= obj["data"], obj["carrinho"]
+                    x.total,x.idCliente= obj["total"], obj["idCliente"]
+                    cls.objetos.append(x)
+        except:
+            pass
 
     @classmethod
-    def salvar(cls)
+    def salvar(cls):
         lista_vendas = []
         for obj in cls.objetos:
             lista_vendas.append(obj.to_dict())

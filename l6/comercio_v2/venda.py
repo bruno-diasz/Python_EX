@@ -1,10 +1,11 @@
-from datetime import date
+from datetime import datetime
 class Venda:
+
     def __init__(self,id:int):
         self.id = id #Chamando setter
 
-        self.__data = None
-        self.__carrinho = None
+        self.__data = datetime.now()
+        self.__carrinho = True
         self.__total = 0
         self.__idCliente = 0
 
@@ -21,11 +22,11 @@ class Venda:
         self.__id= valor
 
     @property
-    def data(self) -> date:
+    def data(self) -> datetime:
         return self.__data 
     @data.setter
-    def data(self,valor:date):
-        if not isinstance(valor, date):
+    def data(self,valor:datetime):
+        if not isinstance(valor, datetime):
             raise TypeError("O valor da data deve ser um do tipo date")
         self.__data = valor
 
@@ -52,6 +53,7 @@ class Venda:
     @property
     def idCliente(self) -> int:
         return self.__idCliente
+    
     @idCliente.setter
     def idCliente(self,valor:int):
         if not isinstance(valor, int):
@@ -63,6 +65,9 @@ class Venda:
     #Metodos de instancia
     def __str__(self):
         return f"{self.id}. {self.data} - carrinho:{self.carrinho} - R$ {self.total:.2f}. idCliente:{self.idCliente}"
+    
+    def to_dict(self):
+        return {"id":self.id, "data":self.data, "carrinho":self.carrinho, "total":self.total, "idCliente":self.idCliente}
     
 
 

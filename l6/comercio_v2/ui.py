@@ -11,13 +11,13 @@ class UI:
         if op == "1":
             print("\n#================= CLIENTE ==================#")
             print("Selecione uma das opções:\n")
-            print("1. Listar clientes    | 2. Inserir clientes \n3. Atualizar clientes | 4. Excluir cliente\n")
+            print("1. Listar | 2. Inserir\n3. Atualizar | 4. Excluir\n")
             op += input("Digite o número da opção desejada: ")
 
         elif op == "2":
             print("\n#================= VENDA ==================#")
             print("Selecione uma das opções:\n")
-            print("1. Listar vendas    | 2. Inserir vendas \n3. Atualizar vendas | 4. Excluir vendas\n")
+            print("1. Iniciar compra | 2. Adicionar produto ao carrinho  \n3. Confirmar compra | 4. Listar compra\n")
             op += input("Digite o número da opção desejada: ")
 
         elif op =="3":
@@ -33,6 +33,10 @@ class UI:
             elif op == 12: UI.cliente_inserir()
             elif op == 13: UI.cliente_atualizar()
             elif op == 14: UI.cliente_excluir()
+            elif op == 21: UI.venda_iniciar()
+            elif op == 22: UI.venda_()
+            elif op == 23: UI.venda_iniciar()
+            elif op == 24: UI.venda_iniciar()
             elif op == 3 : break
             else: print("Digite uma opção válida")
 
