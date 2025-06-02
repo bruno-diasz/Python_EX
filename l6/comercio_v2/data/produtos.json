@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "desc": "Shampoo",
+        "preco": 1.5,
+        "estoque": 10,
+        "categoriaID": 0
+    },
+    {
+        "id": 2,
+        "desc": "Condicionador",
+        "preco": 1.0,
+        "estoque": 10,
+        "categoriaID": 0
+    },
+    {
+        "id": 3,
+        "desc": "Sabonete",
+        "preco": 7.5,
+        "estoque": 7,
+        "categoriaID": 0
+    }
+]

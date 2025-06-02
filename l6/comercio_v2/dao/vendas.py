@@ -50,7 +50,7 @@ class Vendas:
                     x.data, x.carrinho= obj["data"], obj["carrinho"]
                     x.total,x.idCliente= obj["total"], obj["idCliente"]
                     cls.objetos.append(x)
-        except:
+        except FileNotFoundError:
             pass
 
     @classmethod
