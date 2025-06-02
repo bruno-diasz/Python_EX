@@ -1,5 +1,6 @@
 from dao.clientes import Clientes, Cliente
 from dao.produtos import Produtos, Produto
+from dao.categorias import Categorias, Categoria
 from dao.vendas import Vendas, Venda
 
 class UI:
@@ -14,7 +15,7 @@ class UI:
         if usr == "1":
             print("\n#================ MENU ADMIN =================#")
             print("Selecione o item que quer editar\n")
-            print("1. Cliente | 2. Produto | 9. Sair\n")
+            print("1. Cliente | 2. Produto | 3. Categoria | 9. Sair\n")
             op = usr+input("- Digite o número da opção desejada: ")
 
             if op == "11":
@@ -28,6 +29,14 @@ class UI:
                 print("Selecione uma das opções:\n")
                 print("1. Listar    | 2. Inserir\n3. Atualizar | 4. Excluir\n")
                 op += input("Digite o número da opção desejada: ")
+
+            elif op == "13":
+                print("\n#================= CATEGORIA ==================#")
+                print("Selecione uma das opções:\n")
+                print("1. Listar    | 2. Inserir\n3. Atualizar | 4. Excluir\n")
+                op += input("Digite o número da opção desejada: ")
+
+            
 
             elif op =="19":
                 return 3
@@ -55,6 +64,11 @@ class UI:
             elif op == 122: UI.produto_inserir()
             elif op == 123: UI.produto_atualizar()
             elif op == 124: UI.produto_excluir()
+
+            elif op == 131: UI.categoria_listar()
+            elif op == 132: UI.categoria_inserir()
+            elif op == 133: UI.categoria_atualizar()
+            elif op == 134: UI.categoria_excluir()
 
             elif op == 21: UI.venda_iniciar()
             elif op == 22: UI.venda_listar()
@@ -123,9 +137,38 @@ class UI:
 
     @staticmethod
     def produto_excluir():
-        id = int(input("Digite o ID o produto que deseja excluir: "))
+        id = int(input("Digite o ID do produto que deseja excluir: "))
         x = Produtos.listar_id(id)
         Produtos.excluir(x)
+
+    #====== CRUD Categoria======
+
+    @staticmethod
+    def categoria_listar():
+        print()
+        categorias = Categorias.listar()
+        for c in categorias:
+            print(c)
+        
+
+    @staticmethod
+    def categoria_inserir():
+        desc = input("Digite a descrição do produto:")
+        x = Categoria(0,desc)
+        Categorias.inserir(x)
+
+    @staticmethod
+    def categoria_atualizar():
+        id = int(input("Digite o ID da categoria que deseja atualizar: "))
+        desc = input("Digite a nova descrição:")
+        x = Categoria(id,desc)
+        Categorias.atualizar(x)
+
+    @staticmethod
+    def categoria_excluir():
+        id = int(input("Digite o ID da categoria que deseja excluir: "))
+        x = Categorias.listar_id(id)
+        Categorias.excluir(x)
 
     #Venda
     @classmethod

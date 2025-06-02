@@ -27,6 +27,9 @@ class Categoria:
 
     #Metodos
     def __str__(self)->str:
-        return f"{self.id}. {self.descricao}."
+        return f"{self.id}. {self.descricao}"
+    
+    def to_dict(self):
+        return {"id":self.id,"descricao":self.descricao}
     
 

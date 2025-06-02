@@ -67,3 +67,9 @@ class VendaItem:
     #Metodos de instancia
     def __str__(self):
         return f"{self.id}. qtd:{self.qtd} x R$ {self.preco:.2f}, idVenda:{self.idVenda}, idProduto:{self.idProduto}"
+    
+    def to_dict(self):
+        return {"id": self.id, "qtd":self.qtd, "preco":self.preco, "idVenda":self.idVenda, "idProduto":self.idProduto}
+    
+
+    
