@@ -17,6 +17,7 @@ class Categorias:
 
     @classmethod
     def listar(cls) -> list[Categoria]:
+        cls.abrir()
         return cls.objetos
 
     @classmethod
@@ -43,6 +44,7 @@ class Categorias:
     @classmethod
     def abrir(cls):
         try:
+            cls.objetos = []  
             with open("l6/comercio_v2/data/categorias.json", mode="r") as arquivo:
                 categorias_json = json.load(arquivo)
                 for obj in categorias_json:

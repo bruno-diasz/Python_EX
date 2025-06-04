@@ -17,10 +17,12 @@ class VendaItems:
 
     @classmethod
     def listar(cls) -> list[VendaItem]:
+        cls.abrir()
         return cls.objetos
 
     @classmethod
     def listar_id(cls,id:int):
+        cls.abrir()
         for obj in cls.objetos:
             if obj.id == id:
                 return obj
@@ -43,6 +45,7 @@ class VendaItems:
     @classmethod
     def abrir(cls):
         try:
+            cls.objetos = []  
             with open("data/vendaitems.json", mode="r") as arquivo:
                 vendas_json = json.load(arquivo)
                 for obj in vendas_json:

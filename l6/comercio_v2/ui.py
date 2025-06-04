@@ -10,7 +10,8 @@ class UI:
     def menu() -> int:
         print("\n#================ LOGIN =================#")
         print("Selecione o tipo de login: ")
-        usr = input("1. Admin | 2. Cliente ")
+        print("1. Admin | 2. Cliente | 9. Sair")
+        usr = input("\n- Digite o número da opção desejada: ")
             
         if usr == "1":
             print("\n#================ MENU ADMIN =================#")
@@ -22,34 +23,39 @@ class UI:
                 print("\n#================= CLIENTE ==================#")
                 print("Selecione uma das opções:\n")
                 print("1. Listar    | 2. Inserir\n3. Atualizar | 4. Excluir\n")
-                op += input("Digite o número da opção desejada: ")
+                op += input("- Digite o número da opção desejada: ")
 
             elif op == "12":
                 print("\n#================= PRODUTO ==================#")
                 print("Selecione uma das opções:\n")
                 print("1. Listar    | 2. Inserir\n3. Atualizar | 4. Excluir\n")
-                op += input("Digite o número da opção desejada: ")
+                op += input("- Digite o número da opção desejada: ")
 
             elif op == "13":
                 print("\n#================= CATEGORIA ==================#")
                 print("Selecione uma das opções:\n")
                 print("1. Listar    | 2. Inserir\n3. Atualizar | 4. Excluir\n")
-                op += input("Digite o número da opção desejada: ")
+                op += input("- Digite o número da opção desejada: ")
 
             
 
             elif op =="19":
-                return 3
+                return 9
 
             return int(op)
         
         elif usr == "2":
             print("\n#================ MENU CLIENTE =================#")
             print("Selecione o item que quer editar\n")
-            print("1. Iniciar carrinho de compras | 2. Listar as compras | 3. inserir produto no carrinho\n")
+            print("1. Iniciar carrinho de compras | 2. Listar as compras | 3. inserir produto no carrinho | 9. Sair\n")
             op = usr+input("- Digite o número da opção desejada: ")
+            if op == "29":
+                return 9
 
             return int(op)
+        
+        elif usr =="9":
+            return 9
         
     @staticmethod
     def main():
@@ -74,8 +80,9 @@ class UI:
             elif op == 22: UI.venda_listar()
             elif op == 23: UI.venda_inserir_item()
 
-            elif op == 3 : break
-            else: print("Digite uma opção válida", op)
+            elif op == 9 : print("\nSistema Encerrado!!! Até Mais🤙️"); break
+
+            else: print("Opção inválida!")
 
     #======CRUD Cliente======
     @staticmethod
@@ -181,7 +188,9 @@ class UI:
         pass
 
     def venda_listar():
-        for v in Vendas.listar():
+        print()
+        vendas = Vendas.listar()
+        for v in vendas:
             print(v)
 
     def venda_confirmar():

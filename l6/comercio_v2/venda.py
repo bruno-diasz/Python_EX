@@ -67,7 +67,8 @@ class Venda:
         return f"{self.id}. {self.data} - carrinho:{self.carrinho} - R$ {self.total:.2f}. idCliente:{self.idCliente}"
     
     def to_dict(self):
-        return {"id":self.id, "data":self.data, "carrinho":self.carrinho, "total":self.total, "idCliente":self.idCliente}
+        data = self.data.strftime("%d/%m/%Y %H:%M:%S")
+        return {"id":self.id, "data":data, "carrinho":self.carrinho, "total":self.total, "idCliente":self.idCliente}
     
 
 

@@ -10,5 +10,11 @@
         "nome": "Paulo Dias",
         "email": "paulo@gmail.com",
         "fone": "7890-0987"
+    },
+    {
+        "id": 3,
+        "nome": "Milena bruna",
+        "email": "xmilena@gmail.com",
+        "fone": "1239485"
     }
 ]
