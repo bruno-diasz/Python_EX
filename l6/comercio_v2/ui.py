@@ -2,6 +2,7 @@ from dao.clientes import Clientes, Cliente
 from dao.produtos import Produtos, Produto
 from dao.categorias import Categorias, Categoria
 from dao.vendas import Vendas, Venda
+from dao.vendaitems import VendaItems, VendaItem
 
 class UI:
     carrinho = None
@@ -9,7 +10,7 @@ class UI:
     @staticmethod
     def menu() -> int:
         print("\n#================ LOGIN =================#")
-        print("Selecione o tipo de login: ")
+        print("Selecione o tipo de login: \n")
         print("1. Admin | 2. Cliente | 9. Sair")
         usr = input("\n- Digite o número da opção desejada: ")
             
@@ -47,7 +48,7 @@ class UI:
         elif usr == "2":
             print("\n#================ MENU CLIENTE =================#")
             print("Selecione o item que quer editar\n")
-            print("1. Iniciar carrinho de compras | 2. Listar as compras | 3. inserir produto no carrinho | 9. Sair\n")
+            print("1. Iniciar carrinho de compras | 2. Listar as compras | 3. Inserir produto no carrinho | 9. Sair\n")
             op = usr+input("- Digite o número da opção desejada: ")
             if op == "29":
                 return 9
@@ -79,6 +80,7 @@ class UI:
             elif op == 21: UI.venda_iniciar()
             elif op == 22: UI.venda_listar()
             elif op == 23: UI.venda_inserir_item()
+            elif op == 24: UI.venda_confirmar()
 
             elif op == 9 : print("\nSistema Encerrado!!! Até Mais🤙️"); break
 
@@ -185,7 +187,17 @@ class UI:
         cls.carrinho = x
         
     def venda_inserir_item():
-        pass
+        for produtos in Produtos.listar():
+            print (produtos)
+        
+        item = int(input("Insira o codigo do produto: "))
+        item = Produtos.listar_id(item)
+        qtd = int(input("Digite a quantidade: "))
+        preco = item.preco*qtd
+        venda = VendaItem(0,qtd,preco)
+        venda.idProduto = item.id
+        VendaItems.inserir(venda)
+        
 
     def venda_listar():
         print()
@@ -194,7 +206,10 @@ class UI:
             print(v)
 
     def venda_confirmar():
-        pass
+        print("teste")
+        items = VendaItems.listar()
+        for v in items:
+            print(v)
 UI.main()
 
 

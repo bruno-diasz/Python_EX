@@ -64,7 +64,8 @@ class Venda:
 
     #Metodos de instancia
     def __str__(self):
-        return f"{self.id}. {self.data} - carrinho:{self.carrinho} - R$ {self.total:.2f}. idCliente:{self.idCliente}"
+        data = self.data.strftime("%d/%m/%Y %H:%M:%S")
+        return f"{self.id}. {data} - carrinho:{self.carrinho} - R$ {self.total:.2f}. idCliente:{self.idCliente}"
     
     def to_dict(self):
         data = self.data.strftime("%d/%m/%Y %H:%M:%S")
