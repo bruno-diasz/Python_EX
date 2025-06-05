@@ -238,7 +238,7 @@ class UI:
         for i in VendaItems.listar():
             if cls.carrinho.id == i.idVenda:
                 prod = Produtos.listar_id(i.idProduto)
-                prod.estoque = prod.estoque - i.qtd
+                prod.estoque -=  i.qtd
                 Produtos.atualizar(prod)
         pass
         
