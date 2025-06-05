@@ -210,7 +210,7 @@ class UI:
         Vendas.atualizar(cls.carrinho)#SAlvando valor na persistencia
         VendaItems.inserir(venda) #Adicionando item ao carrinho
         print(f"\n*** {item.descricao} adicionado com sucesso! ***")
-        UI.venda_inserir_item() #Repedindo novamente 
+        UI.venda_inserir_item() #Repetindo novamente 
         
     @staticmethod
     def venda_listar():
@@ -226,6 +226,9 @@ class UI:
 
     @classmethod
     def venda_listar_carrinho(cls):
+        if cls.carrinho is None: #Verificando se tem carrinho
+            print("\n*** Você ainda não tem carrinho ***")
+            return
         print()
         venda = Vendas.listar_id(cls.carrinho.id)
         print(venda)
@@ -240,7 +243,9 @@ class UI:
                 prod = Produtos.listar_id(i.idProduto)
                 prod.estoque -=  i.qtd
                 Produtos.atualizar(prod)
-        pass
+        cls.carrinho.carrinho = False
+        Vendas.atualizar(cls.carrinho)
+        cls.carrinho = None
         
 UI.main()
 
