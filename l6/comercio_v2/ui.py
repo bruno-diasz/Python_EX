@@ -62,6 +62,7 @@ class UI:
     def main():
         while True:
             op = UI.menu()
+
             if op == 111: UI.cliente_listar()
             elif op == 112: UI.cliente_inserir()
             elif op == 113: UI.cliente_atualizar()
@@ -81,6 +82,7 @@ class UI:
             elif op == 22: UI.venda_listar()
             elif op == 23: UI.venda_listar_carrinho()
             elif op == 24: UI.venda_inserir_item()
+            elif op == 25: UI.venda_confirmar()
 
             elif op == 9 : print("\nSistema Encerrado!!! Até Mais🤙️"); break
 
@@ -230,6 +232,15 @@ class UI:
         for i in VendaItems.listar():
             if i.idVenda == venda.id:
                 print("    ",i)
+
+    @classmethod
+    def venda_confirmar(cls):
+        for i in VendaItems.listar():
+            if cls.carrinho.id == i.idVenda:
+                prod = Produtos.listar_id(i.idProduto)
+                prod.estoque = prod.estoque - i.qtd
+                Produtos.atualizar(prod)
+        pass
         
 UI.main()
 
