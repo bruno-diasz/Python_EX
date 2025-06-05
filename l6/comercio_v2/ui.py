@@ -46,9 +46,9 @@ class UI:
             return int(op)
         
         elif usr == "2":
-            print("\n#================ MENU CLIENTE =================#")
+            print("\n#======================== MENU CLIENTE ========================#")
             print("Selecione o item que quer editar\n")
-            print("1. Iniciar carrinho de compras | 2. Listar as compras | 3. Inserir produto no carrinho | 9. Sair\n")
+            print("1. Iniciar carrinho de compras | 2. Listar as compras\n3. Listar carrinho de compras  | 4. Inserir produto no carrinho\n9. Sair\n")
             op = usr+input("- Digite o número da opção desejada: ")
             if op == "29":
                 return 9
@@ -79,8 +79,8 @@ class UI:
 
             elif op == 21: UI.venda_iniciar()
             elif op == 22: UI.venda_listar()
-            elif op == 23: UI.venda_inserir_item()
-            elif op == 24: UI.venda_confirmar()
+            elif op == 23: UI.venda_listar_carrinho()
+            elif op == 24: UI.venda_inserir_item()
 
             elif op == 9 : print("\nSistema Encerrado!!! Até Mais🤙️"); break
 
@@ -179,37 +179,58 @@ class UI:
         x = Categorias.listar_id(id)
         Categorias.excluir(x)
 
-    #Venda
+    #======= Venda==========
     @classmethod
     def venda_iniciar(cls):
         x =  Venda(0)
         Vendas.inserir(x)
         cls.carrinho = x
         
-    def venda_inserir_item():
-        for produtos in Produtos.listar():
-            print (produtos)
-        
-        item = int(input("Insira o codigo do produto: "))
-        item = Produtos.listar_id(item)
-        qtd = int(input("Digite a quantidade: "))
-        preco = item.preco*qtd
-        venda = VendaItem(0,qtd,preco)
-        venda.idProduto = item.id
-        VendaItems.inserir(venda)
-        
+    @classmethod    
+    def venda_inserir_item(cls):
+        if cls.carrinho is None: #Verificando se tem carrinho
+            print("\n*** Para inserir um produto é necessario iniciar um carrinho! ***")
+            return
+        print()
+        UI.produto_listar() #Listando Produtos
+        print("\nDigite -1 para sair\n")
 
+        item = int(input("Insira o codigo do produto: "))
+        if item == -1: return
+        item = Produtos.listar_id(item) #Pegando o produto da lista de produtos
+        qtd = int(input("Digite a quantidade: "))
+        preco = item.preco*qtd #Escolhendo a quantidade 
+        venda = VendaItem(0,qtd,preco) #Montando o item de venda
+        venda.idProduto = item.id #Associando itemvenda ao produto
+        venda.idVenda = cls.carrinho.id #Associando ao carrinho
+
+        cls.carrinho.total += preco #Adicionando valor ao total no carrinho
+        Vendas.atualizar(cls.carrinho)#SAlvando valor na persistencia
+        VendaItems.inserir(venda) #Adicionando item ao carrinho
+        print(f"\n*** {item.descricao} adicionado com sucesso! ***")
+        UI.venda_inserir_item() #Repedindo novamente 
+        
+    @staticmethod
     def venda_listar():
         print()
+        
         vendas = Vendas.listar()
         for v in vendas:
             print(v)
+            for i in VendaItems.listar():
+                if i.idVenda == v.id:
+                    print("    ",i)
+            print()
 
-    def venda_confirmar():
-        print("teste")
-        items = VendaItems.listar()
-        for v in items:
-            print(v)
+    @classmethod
+    def venda_listar_carrinho(cls):
+        print()
+        venda = Vendas.listar_id(cls.carrinho.id)
+        print(venda)
+        for i in VendaItems.listar():
+            if i.idVenda == venda.id:
+                print("    ",i)
+        
 UI.main()
 
 

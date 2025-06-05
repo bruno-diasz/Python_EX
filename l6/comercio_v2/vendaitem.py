@@ -1,3 +1,4 @@
+from dao.produtos import Produtos
 class VendaItem:
     #Contrutor
     def __init__(self, id:int, qtd:int, preco:float):
@@ -66,7 +67,10 @@ class VendaItem:
 
     #Metodos de instancia
     def __str__(self):
-        return f"{self.id}. qtd:{self.qtd} x R$ {self.preco:.2f}, idVenda:{self.idVenda}, idProduto:{self.idProduto}"
+        nomeprod = Produtos.listar_id(self.idProduto).descricao
+        valorprod = Produtos.listar_id(self.idProduto).preco
+    
+        return f"{nomeprod:<18} R$ {valorprod:.2f} x Qtd:{self.qtd}     R$ {self.preco:.2f}"
     
     def to_dict(self):
         return {"id": self.id, "qtd":self.qtd, "preco":self.preco, "idVenda":self.idVenda, "idProduto":self.idProduto}
